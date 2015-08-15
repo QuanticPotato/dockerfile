@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM occitech/cakephp:5.6-apache
 
 MAINTAINER Barnabé Chauvin <barnabe.chauvin@gmail.com>
 
