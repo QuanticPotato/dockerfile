@@ -6,10 +6,14 @@ MAINTAINER Barnabé Chauvin <barnabe.chauvin@gmail.com>
 COPY php.ini /usr/local/etc/php/
 
 # Set the webroot/ directory of the given volume as the apache root directory
-VOLUME ['/app']
 RUN rm -r /var/www/html && \
 	ln -s /app/webroot /var/www/html
 
-# Install mysql client
+# Install packages (mysql, mail)
 RUN apt-get update && apt-get install -y  \
-	mysql-client
+	mysql-client \
+	mailutils \
+	ssmtp
+
+COPY install.sh /opt/install.sh
+CMD /opt/install.sh && apache2-foreground
